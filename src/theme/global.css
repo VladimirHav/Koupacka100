@@ -1,0 +1,69 @@
+/* Global visual refresh — styling only, no structural/UI changes.
+   Softer shadows, rounded corners, and calmer typography across
+   the existing Ionic components used in this app. */
+
+ion-toolbar {
+  --border-width: 0;
+  --box-shadow: 0 1px 0 0 var(--ion-border-color);
+}
+
+ion-title {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+ion-card {
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.08);
+  border: 1px solid var(--ion-border-color);
+}
+
+ion-button {
+  --border-radius: 12px;
+  text-transform: none;
+  font-weight: 600;
+  letter-spacing: normal;
+}
+
+ion-fab-button {
+  --border-radius: 18px;
+  --box-shadow: 0 6px 16px rgba(14, 165, 233, 0.35);
+}
+
+ion-item {
+  --border-width: 0;
+  --inner-border-width: 0;
+  --padding-start: 16px;
+  --inner-padding-end: 16px;
+}
+
+ion-input,
+ion-datetime-button {
+  --background: #f1f5f9;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+  border-radius: 10px;
+}
+
+ion-datetime-button::part(native) {
+  border-radius: 10px;
+  background: #f1f5f9;
+}
+
+ion-alert .alert-wrapper {
+  border-radius: 16px;
+}
+
+ion-range {
+  --bar-background: #e2e8f0;
+  --bar-background-active: var(--ion-color-primary);
+  --knob-background: var(--ion-color-primary);
+  --pin-background: var(--ion-color-primary);
+  --pin-color: var(--ion-color-primary-contrast);
+}
+
+ion-thumbnail {
+  --border-radius: 10px;
+}

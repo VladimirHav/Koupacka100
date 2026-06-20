@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create *)",
+      "Bash(npx --yes create-vite@latest temp-scaffold --template react-ts)",
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Bash(nohup npm run dev)",
+      "Read(//tmp/**)",
+      "Bash(pkill -f \"vite\")",
+      "Bash(netstat -ano)",
+      "Bash(cmd.exe /c \"taskkill /F /PID 23372\")",
+      "PowerShell(Stop-Process -Id 23372 -Force -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-NetTCPConnection -LocalPort 5173 -ErrorAction SilentlyContinue)",
+      "Bash(mkdir -p \"D:\\\\Koupacka100\\\\.claude\" && cat \"D:\\\\Koupacka100\\\\.claude\\\\launch.json\" 2>/dev/null || echo \"no file\")",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(grep -rn \"/records/\\\\${\" src/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" \"http://localhost:5173/records/view/c15caa44-b674-4fb6-b112-721e6b624ada\")",
+      "Bash(npx cap *)",
+      "Bash(echo.)",
+      "Bash(cmd.exe /c build-apk.bat)",
+      "Bash(xxd)",
+      "PowerShell(cd D:\\\\Koupacka100\\\\android; $env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\openjdk\\\\jdk-21.0.8\"; $env:PATH = \"$env:JAVA_HOME\\\\bin;$env:PATH\"; .\\\\gradlew.bat --version)",
+      "Bash(node -e \"console.log\\(require.resolve\\('sharp'\\)\\)\")",
+      "Bash(node -e ' *)",
+      "Bash(npx capacitor-assets *)",
+      "Bash(xargs cat)",
+      "Bash(tail -30 build-icon-test.log)",
+      "Bash(tail -10 build-test2.log)",
+      "Bash(xargs grep -l \"getPhoto\\\\|pickImages\")"
+    ]
+  }
+}
