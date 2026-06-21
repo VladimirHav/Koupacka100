@@ -50,3 +50,57 @@ Pouze v telefonu (lokálně), nikam se neodesílají. Proto je dobré dělat zá
 
 **Co když omylem smažu záznam?**
 Mazání je nutné potvrdit dialogem. Pokud máš zálohu (export), můžeš záznamy obnovit importem.
+
+---
+
+## Developer setup (after cloning the repository)
+
+This is an Ionic React app with a Capacitor Android wrapper. The web app is the source of truth; the Android project under `android/` is generated/synced from it.
+
+### Prerequisites
+
+- **Node.js** 18+ and npm
+- **Android Studio / Android SDK** (`ANDROID_HOME` set) — only needed if you want to build the Android APK, not for browser development
+- **JDK 17+** for the Android Gradle build (a JDK 8 system default, common on older setups, will fail the build). The repo's `build-apk.bat` points at a specific JDK 21 path — update that path if your machine doesn't have it there (e.g. point it at Android Studio's bundled JBR, usually `<Android Studio install dir>\jbr`).
+
+### Install dependencies
+
+```sh
+npm install
+```
+
+### Run in the browser
+
+```sh
+run-browser.bat
+```
+
+(equivalent to `npm run dev -- --open`). This starts the Vite dev server and opens the app in your default browser — fastest loop for UI/feature work. Camera/GPS/export use the browser-based service implementations (file picker, `navigator.geolocation`, a Blob download) in this mode.
+
+### Build the Android APK
+
+```sh
+build-apk.bat
+```
+
+This runs, in order: `npm run build` (web bundle) → `npx cap sync android` (copies the web build and any new/updated Capacitor plugins into the native project) → a Gradle debug build. The resulting APK lands at:
+
+```
+android/app/build/outputs/apk/debug/app-debug.apk
+```
+
+Copy that file to an Android device to install it (see the Czech installation instructions above). This project is not configured for Play Store distribution — only debug/sideload builds.
+
+### Project structure pointers
+
+- `src/services/*/` — platform abstractions (storage, camera, geolocation, file export). Each has a `Web*` implementation and a `Capacitor*` implementation; `src/services/platform.ts` picks one at runtime via `Capacitor.isNativePlatform()`. Add new platform-dependent features through this pattern rather than calling browser or Capacitor APIs directly from a page/component.
+- `src/pages/` — one folder per screen (list, create/edit form, detail).
+- `src/domain/record.ts` — the `SwimRecord` data model and validation.
+- `src/state/` — React Context + reducer wrapping the repository; `useRecords()` is the hook pages call.
+- `capacitor.config.ts` — app id/name and web build output dir used by the Android wrapper.
+
+### Notes if you change platform/native code
+
+- Adding a new Capacitor plugin: `npm install @capacitor/<plugin>`, then run `build-apk.bat` (or `npx cap sync android` directly) so the native project picks it up.
+- Changing the app icon: regenerate via `npx capacitor-assets generate --android` from a square source image in `resources/icon.png`, then rebuild.
+- The Android project's permissions live in `android/app/src/main/AndroidManifest.xml`; app display name lives in `android/app/src/main/res/values/strings.xml` and `capacitor.config.ts` (`appName`) — keep both in sync.
