@@ -2,6 +2,27 @@
 
 Osobní aplikace pro zapisování míst, kde jsi byl/a koupat se. Cílem je nasbírat **100 míst**.
 
+Cíl 100 míst vychází ze činu **1P2 — Koupání v řekách, rybnících, ...** 
+
+
+**VL + ML**
+
+- Koupej se¹⁴ ve **100** řekách, jezerech, potocích, rybnících, přehradách, mořích⁷ — **ČIN**
+- Koupej se¹⁴ ve **200** řekách, jezerech, potocích, rybnících, přehradách, mořích⁷ — **VELKÝ ČIN**
+
+**ML:** Koupej se ve 3× tolika řekách, jezerech, potocích, rybnících, přehradách, kolik je ti let.
+
+## Vysvětlivky
+
+**⁷ Evidence**
+
+(nachozené km, noci v přírodě apod.): nutno předložit záznamy, které budou u každé položky obsahovat minimálně datum, místo a počet (km, nocí, …).
+
+**¹⁴ Koupej se**
+
+ponoř se do vody celý až po krk a pokud možno udělej alespoň 2 tempa.
+
+
 ## Instalace na telefon
 
 1. Zkopíruj soubor `app-debug.apk` (najdeš ho v `android/app/build/outputs/apk/debug/`) do telefonu.
