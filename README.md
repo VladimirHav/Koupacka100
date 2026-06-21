@@ -1,73 +1,52 @@
-# React + TypeScript + Vite
+# Koupačka 100 — návod k použití
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Osobní aplikace pro zapisování míst, kde jsi byl/a koupat se. Cílem je nasbírat **100 míst**.
 
-Currently, two official plugins are available:
+## Instalace na telefon
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+1. Zkopíruj soubor `app-debug.apk` (najdeš ho v `android/app/build/outputs/apk/debug/`) do telefonu.
+2. Otevři soubor v telefonu a potvrď instalaci (Android se může zeptat na povolení instalace z neznámého zdroje — je to v pořádku, aplikace není z Google Play).
+3. Při prvním použití GPS nebo fotoaparátu se zobrazí systémové žádosti o povolení — potvrď je, jinak tyto funkce nebudou fungovat.
 
-## React Compiler
+## Hlavní obrazovka
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Po otevření vidíš seznam všech zapsaných koupání jako kartičky. Číslo v záhlaví (např. `5/100`) ukazuje, kolik míst máš zapsáno z cílových 100.
 
-## Expanding the ESLint configuration
+- **Plus tlačítko** (vpravo dole) — vytvoří nový záznam.
+- **Klepnutí na kartičku** — otevře detail záznamu.
+- **Přejetí kartičky doleva** — zobrazí možnost smazání.
+- **Ikony nahoře v záhlaví** — export a import záznamů (viz níže).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Vytvoření nového záznamu
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1. Klepni na **+**.
+2. **Datum** — předvyplněné na dnešek, můžeš změnit.
+3. **Místo** — napiš název místa (např. "Bagr Poděbrady").
+4. **GPS poloha** — klepni na *Získat polohu* a aplikace zjistí souřadnice tvé aktuální pozice.
+5. **Kvalita vody** a **Přístup do vody** — posuvníky od 1 do 10. Klepnutím na text na okraji posuvníku (např. "Špatná"/"Dobrá") se hodnota posune o jeden krok daným směrem.
+6. **Teplota vody** — posuvník od 1 do 5, stejné ovládání.
+7. **Komentář** — volitelná poznámka, max. 500 znaků.
+8. **Fotky** — *Vyfotit* vyfotí jednu fotku fotoaparátem, *Vybrat z galerie* umožní vybrat i více fotek najednou. Fotku lze odstranit křížkem v jejím náhledu.
+9. Klepni na **Uložit**.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Detail záznamu
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Zobrazuje všechny zadané údaje včetně fotek, data koupání a data, kdy byl záznam vytvořen. Odsud lze záznam **upravit** nebo **smazat** (smazání je nutné potvrdit).
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Export a import dat
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Export** (ikona stažení) — vytvoří soubor `moje-plavani-DATUM.json` se všemi záznamy včetně fotek a otevře nabídku "Sdílet", odkud si soubor můžeš uložit (např. do Souborů, na Disk, poslat e-mailem).
+- **Import** (ikona nahrání) — vybereš dříve exportovaný `.json` soubor a záznamy se načtou zpět. Import je bezpečný i opakovaně — záznamy se stejným ID se jen přepíšou, nezduplikují se.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Doporučení: po větším počtu nových záznamů si občas udělej export jako záložní kopii.
+
+## Často kladené otázky
+
+**Proč aplikace žádá o přístup k poloze/fotoaparátu?**
+Pouze pro funkce *Získat polohu* a *Vyfotit/Vybrat z galerie*. Bez povolení tyto konkrétní tlačítka nebudou fungovat, zbytek aplikace ano.
+
+**Kde se data ukládají?**
+Pouze v telefonu (lokálně), nikam se neodesílají. Proto je dobré dělat zálohy přes export.
+
+**Co když omylem smažu záznam?**
+Mazání je nutné potvrdit dialogem. Pokud máš zálohu (export), můžeš záznamy obnovit importem.
