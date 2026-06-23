@@ -52,7 +52,8 @@ const db = new SwimLogDatabase();
 
 export class IndexedDbStorageService implements StorageService {
   async getAll(): Promise<SwimRecord[]> {
-    return db.records.orderBy('date').reverse().toArray();
+    // Oldest swim date first, matching the "fill up to 100 places" progress view.
+    return db.records.orderBy('date').toArray();
   }
 
   async getById(id: string): Promise<SwimRecord | undefined> {

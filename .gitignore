@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Locally archived APK builds (build-apk.bat output, manually copied here)
+builds/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
