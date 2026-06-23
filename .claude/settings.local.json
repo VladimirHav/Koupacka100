@@ -28,7 +28,32 @@
       "Bash(xargs cat)",
       "Bash(tail -30 build-icon-test.log)",
       "Bash(tail -10 build-test2.log)",
-      "Bash(xargs grep -l \"getPhoto\\\\|pickImages\")"
+      "Bash(xargs grep -l \"getPhoto\\\\|pickImages\")",
+      "Bash(find \"D:\\\\Koupacka100\\\\node_modules\\\\@capacitor\\\\android\" -iname \"BridgeActivity*\" 2>/dev/null; find / -path \"*/capacitor-android*\" -iname \"Bridge.java\" 2>/dev/null | head -5)",
+      "Bash(xargs grep -n \"//.*\\\\|/\\\\*\")",
+      "Bash(xargs wc -l)",
+      "WebSearch",
+      "Bash(Get-ChildItem -Path \"D:\\\\Mlynek\\\\smart-grind-by-weight\\\\src\\\\ui\\\\screens\" -Filter \"*.cpp\" -File)",
+      "Bash(Select-Object Name)",
+      "mcp__visualize__read_me",
+      "mcp__visualize__show_widget",
+      "WebFetch(domain:pajenicko.cz)",
+      "Bash(mkdir -p /tmp/letak)",
+      "Bash(node make.js)",
+      "PowerShell(New-Item -ItemType Directory -Force -Path \"D:\\\\Koupacka100\\\\.tmp_letak\")",
+      "PowerShell(Copy-Item \"D:\\\\tmp\\\\letak\\\\make.js\" \"D:\\\\Koupacka100\\\\.tmp_letak\\\\make.js\")",
+      "PowerShell(Copy-Item -Recurse \"D:\\\\tmp\\\\letak\\\\node_modules\" \"D:\\\\Koupacka100\\\\.tmp_letak\\\\node_modules\")",
+      "PowerShell($skill = \"C:\\\\Users\\\\BF\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\b8588895-ca3c-4e49-94dc-17c041ba219a\\\\494f9318-2ada-45f2-a79d-fff3d496c6a4\\\\skills\\\\docx\"; cd \"D:\\\\Koupacka100\\\\.tmp_letak\"; python \"$skill\\\\scripts\\\\office\\\\validate.py\" letak_rajce_venus.docx)",
+      "PowerShell(cd \"D:\\\\Koupacka100\\\\.tmp_letak\"; $path = \\(Resolve-Path letak_rajce_venus.docx\\).Path; Add-Type -AssemblyName System.IO.Compression.FileSystem; $zip = [System.IO.Compression.ZipFile]::OpenRead\\($path\\); $zip.Entries | Select-Object -First 5 Name; $zip.Dispose\\(\\); Get-Item letak_rajce_venus.docx | Select-Object Name,Length)",
+      "Bash(npm uninstall *)",
+      "Bash(git checkout *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(gh pr create --title 'Android back navigation, photo zoom, about dialog, oldest-first sort' --body ' *)",
+      "Bash(git pull *)",
+      "Bash(git branch *)",
+      "Bash(git fetch *)"
     ]
   }
 }
