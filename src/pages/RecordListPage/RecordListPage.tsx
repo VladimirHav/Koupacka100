@@ -17,11 +17,25 @@ import {
   IonToast,
   IonToolbar,
 } from '@ionic/react';
-import { add, cloudUploadOutline, downloadOutline } from 'ionicons/icons';
+import { add, cloudUploadOutline, downloadOutline, informationCircleOutline } from 'ionicons/icons';
 import { TARGET_PLACES_COUNT, todayIsoDate } from '../../domain/record';
 import { useRecords } from '../../state/useRecords';
 import { fileExportService } from '../../services/platform';
 import { RecordCard } from './RecordCard';
+
+// IonAlert's `message` prop accepts (sanitized) HTML, not markdown.
+const ABOUT_MESSAGE_HTML = `
+  <p><strong>1P2 — Koupání v řekách, rybnících, ...</strong></p>
+  <p><strong>VL + ML</strong></p>
+  <ul>
+    <li>Koupej se¹⁴ ve <strong>100</strong> řekách, jezerech, potocích, rybnících, přehradách, mořích⁷ — <strong>ČIN</strong></li>
+    <li>Koupej se¹⁴ ve <strong>200</strong> řekách, jezerech, potocích, rybnících, přehradách, mořích⁷ — <strong>VELKÝ ČIN</strong></li>
+  </ul>
+  <p><strong>ML:</strong> Koupej se ve 3× tolika řekách, jezerech, potocích, rybnících, přehradách, kolik je ti let.</p>
+  <p><strong>Vysvětlivky</strong></p>
+  <p><strong>⁷ Evidence</strong><br>(nachozené km, noci v přírodě apod.): nutno předložit záznamy, které budou u každé položky obsahovat minimálně datum, místo a počet (km, nocí, …).</p>
+  <p><strong>¹⁴ Koupej se</strong><br>ponoř se do vody celý až po krk a pokud možno udělej alespoň 2 tempa.</p>
+`;
 
 export function RecordListPage() {
   const { records, loading, error, deleteRecord, exportToJson, importFromJson } = useRecords();
@@ -31,6 +45,7 @@ export function RecordListPage() {
 
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(location.state?.toast ?? null);
+  const [showAbout, setShowAbout] = useState(false);
 
   function handleOpen(id: string) {
     history.push(`/records/view/${id}`);
@@ -80,6 +95,11 @@ export function RecordListPage() {
     <IonPage>
       <IonHeader>
         <IonToolbar>
+          <IonButtons slot="start">
+            <IonButton onClick={() => setShowAbout(true)} aria-label="O aplikaci">
+              <IonIcon slot="icon-only" icon={informationCircleOutline} />
+            </IonButton>
+          </IonButtons>
           <IonTitle>
             {records.length}/{TARGET_PLACES_COUNT}
           </IonTitle>
@@ -156,6 +176,15 @@ export function RecordListPage() {
         message={toastMessage ?? ''}
         duration={2000}
         onDidDismiss={() => setToastMessage(null)}
+      />
+
+      <IonAlert
+        isOpen={showAbout}
+        header="Koupačka 100"
+        subHeader={`Verze ${__APP_VERSION__}`}
+        message={ABOUT_MESSAGE_HTML}
+        buttons={['OK']}
+        onDidDismiss={() => setShowAbout(false)}
       />
     </IonPage>
   );

@@ -16,8 +16,9 @@ import type { SwimRecord } from '../../domain/record';
 import { useRecords } from '../../state/useRecords';
 import { useObjectUrl } from '../../shared/hooks/useObjectUrl';
 import { formatDate, formatDateTime } from '../../shared/formatDate';
+import { PhotoLightbox } from './PhotoLightbox';
 
-function DetailPhoto({ photo }: { photo: Blob }) {
+function DetailPhoto({ photo, onClick }: { photo: Blob; onClick: () => void }) {
   const url = useObjectUrl(photo);
   if (!url) {
     return null;
@@ -25,13 +26,15 @@ function DetailPhoto({ photo }: { photo: Blob }) {
   return (
     <img
       src={url}
-      alt=""
+      alt="Klepnutím zobrazíte fotku ve větším náhledu"
+      onClick={onClick}
       style={{
         height: 220,
         width: 'auto',
         flexShrink: 0,
         objectFit: 'cover',
         borderRadius: 12,
+        cursor: 'pointer',
       }}
     />
   );
@@ -45,6 +48,7 @@ export function RecordDetailPage() {
   const [record, setRecord] = useState<SwimRecord | null>(null);
   const [loading, setLoading] = useState(true);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [lightboxPhoto, setLightboxPhoto] = useState<Blob | null>(null);
 
   useEffect(() => {
     let active = true;
@@ -93,7 +97,7 @@ export function RecordDetailPage() {
             {record.photos.length > 0 && (
               <div style={{ display: 'flex', gap: 8, overflowX: 'auto', marginBottom: 16 }}>
                 {record.photos.map((photo, index) => (
-                  <DetailPhoto key={index} photo={photo} />
+                  <DetailPhoto key={index} photo={photo} onClick={() => setLightboxPhoto(photo)} />
                 ))}
               </div>
             )}
@@ -149,6 +153,8 @@ export function RecordDetailPage() {
         ]}
         onDidDismiss={() => setConfirmDelete(false)}
       />
+
+      <PhotoLightbox photo={lightboxPhoto} onClose={() => setLightboxPhoto(null)} />
     </IonPage>
   );
 }
