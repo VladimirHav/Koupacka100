@@ -53,7 +53,8 @@
       "Bash(gh pr create --title 'Android back navigation, photo zoom, about dialog, oldest-first sort' --body ' *)",
       "Bash(git pull *)",
       "Bash(git branch *)",
-      "Bash(git fetch *)"
+      "Bash(git fetch *)",
+      "PowerShell(Select-String -Path \"C:\\\\Allma GIT\\\\Tieto.Allma.Utils\\\\packages.config\" -Pattern \"Newtonsoft|RestSharp|System\\\\.Buffers|System\\\\.Memory|System\\\\.Net\\\\.Http|System\\\\.Numerics|System\\\\.Runtime\\\\.CompilerServices\\\\.Unsafe\" | Group-Object { \\($_.Line -match 'id=\"\\([^\"]+\\)\"' | Out-Null\\); $Matches[1] } | Where-Object { $_.Count -gt 1 } | Select-Object Name, Count)"
     ]
   }
 }

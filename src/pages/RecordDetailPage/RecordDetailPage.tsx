@@ -70,8 +70,8 @@ export function RecordDetailPage() {
 
   const mapsUrl =
     record?.latitude !== null && record?.longitude !== null && record
-      ? `https://www.google.com/maps?q=${record.latitude},${record.longitude}`
-      : null;
+      ? `https://mapy.com/fnc/v1/showmap?mapset=outdoor&center=${record.longitude},${record.latitude}&zoom=16&marker=true`
+        : null;
 
   return (
     <IonPage>
