@@ -25,7 +25,7 @@ ponoř se do vody celý až po krk a pokud možno udělej alespoň 2 tempa.
 
 ## Instalace na telefon
 
-1. Zkopíruj soubor `app-debug.apk` (najdeš ho v `android/app/build/outputs/apk/debug/`) do telefonu.
+1. Zkopíruj soubor `app-debug.apk` (najdeš ho v `android/app/build/outputs/apk/debug/`) do telefonu nebo z adresáře Applikace.
 2. Otevři soubor v telefonu a potvrď instalaci (Android se může zeptat na povolení instalace z neznámého zdroje — je to v pořádku, aplikace není z Google Play).
 3. Při prvním použití GPS nebo fotoaparátu se zobrazí systémové žádosti o povolení — potvrď je, jinak tyto funkce nebudou fungovat.
 
